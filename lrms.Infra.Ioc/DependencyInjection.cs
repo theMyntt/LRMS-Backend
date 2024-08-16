@@ -1,4 +1,6 @@
 using System;
+using lrms.Application.Interfaces;
+using lrms.Application.Services;
 using lrms.Domain.Aggregates;
 using lrms.Infra.Data.Context;
 using lrms.Infra.Data.Entities;
@@ -23,6 +25,7 @@ public static class DependencyInjection
 
         services.AddScoped<IMapper<UserEntity, UserAggregate>, UserMapper>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }
