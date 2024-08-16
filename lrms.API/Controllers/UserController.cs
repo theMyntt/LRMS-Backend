@@ -16,7 +16,7 @@ namespace lrms.API.Controllers
             this._service = _service;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         [Tags("User Auth")]
         public async Task<ActionResult<LoginOutputDTO>> Login([FromBody] LoginInputDTO dto)
         {
@@ -30,6 +30,22 @@ namespace lrms.API.Controllers
                 });
 
             return Ok(response);
+        }
+
+        [HttpPost("new")]
+        [Tags("User Management")]
+        public async Task<IActionResult> Create([FromBody] UserInsertDTO dto)
+        {
+            var response = await _service.Insert(dto);
+
+            if (response == null)
+                return BadRequest(new
+                {
+                    message = "We cant create this user",
+                    statusCode = 400
+                });
+
+            return StatusCode(201, response);
         }
     }
 }
