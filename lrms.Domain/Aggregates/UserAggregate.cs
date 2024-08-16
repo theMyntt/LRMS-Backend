@@ -35,6 +35,7 @@ public class UserAggregate
                          string Email,
                          string Password,
                          Guid? CreatedBy,
+                         DateTime? LastAccess,
                          DateTime CreatedAt)
     {
         this.Id = Id;
@@ -43,6 +44,7 @@ public class UserAggregate
         this.Password = Password;
         this.CreatedBy = CreatedBy;
         this.CreatedAt = CreatedAt;
+        this.LastAccess = LastAccess;
         this.UpdatedAt = DateTime.UtcNow;
 
         ValidateDomain();
@@ -54,7 +56,8 @@ public class UserAggregate
                          string Password,
                          Guid? CreatedBy,
                          DateTime CreatedAt,
-                         DateTime UpdatedAt)
+                         DateTime? LastAccess,
+                         DateTime? UpdatedAt)
     {
         this.Id = Id;
         this.Name = Name.ToUpper();
@@ -62,6 +65,7 @@ public class UserAggregate
         this.Password = Password;
         this.CreatedBy = CreatedBy;
         this.CreatedAt = CreatedAt;
+        this.LastAccess = LastAccess;
         this.UpdatedAt = UpdatedAt;
     }
 
