@@ -11,4 +11,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\lrms.Application\lrms.Application.csproj" />
+    <ProjectReference Include="..\lrms.Domain\lrms.Domain.csproj" />
+    <ProjectReference Include="..\lrms.Infra.Data\lrms.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
