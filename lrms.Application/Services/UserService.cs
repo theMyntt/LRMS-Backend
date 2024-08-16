@@ -15,7 +15,7 @@ public class UserService : IUserService
         _repository = repository;
     }
 
-    public async Task<UserInsertDTO?> Insert(UserInsertDTO dto)
+    public async Task<UserOutputDTO?> Insert(UserInsertDTO dto)
     {
         UserAggregate aggregate = new(dto.Name,
                                       dto.Email,
@@ -26,7 +26,13 @@ public class UserService : IUserService
 
         if (isOk)
         {
-            return dto;
+            return new UserOutputDTO
+            {
+                Id = aggregate.Id,
+                Name = aggregate.Name,
+                Email = aggregate.Email,
+                Password = aggregate.Password,
+            };
         }
 
         return null;
