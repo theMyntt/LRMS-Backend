@@ -22,4 +22,8 @@
     <Folder Include="EntitiesConfiguration\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\lrms.Domain\lrms.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
