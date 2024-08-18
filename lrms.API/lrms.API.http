@@ -1,6 +1,24 @@
-@lrms.API_HostAddress = http://localhost:5042
+@api = http://localhost:5000/api
 
-GET {{lrms.API_HostAddress}}/weatherforecast/
-Accept: application/json
+// New User
+POST {{api}}/user/new
+Content-Type: application/json
+
+{
+    "name": "Admin",
+    "email": "admin@admin.org",
+    "password": "12345678",
+    "createdBy": null 
+}
+// if someone created this user, just insert at createdBy field your UUID
 
 ###
+
+// User Auth
+POST {{api}}/user/login
+Content-Type: application/json
+
+{
+    "email": "admin@admin.org",
+    "password": "12345678"
+}
