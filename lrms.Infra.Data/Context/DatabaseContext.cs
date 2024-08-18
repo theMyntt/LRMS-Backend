@@ -9,6 +9,7 @@ public class DatabaseContext : DbContext
     public DatabaseContext(DbContextOptions options) : base(options) { }
 
     public DbSet<UserEntity> Usuarios { get; set; }
+    public DbSet<ClientEntity> Clientes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
