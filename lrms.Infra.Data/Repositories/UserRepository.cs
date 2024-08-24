@@ -12,6 +12,18 @@ public class UserRepository(DatabaseContext context, IMapper<UserEntity, UserAgg
     private readonly DatabaseContext _context = context;
     private readonly IMapper<UserEntity, UserAggregate> _mapper = mapper;
 
+    public async Task<UserAggregate?> FindById(Guid Id)
+    {
+        var entity = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == Id);
+
+        if (entity == null)
+        {
+            return null;
+        }
+
+        return _mapper.ToDomain(entity);
+    }
+
     public async Task<bool> Insert(UserAggregate user)
     {
         try
