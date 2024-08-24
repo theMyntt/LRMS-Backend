@@ -10,18 +10,46 @@ namespace lrms.Application.Services;
 public class ClientService : IClientService
 {
     private readonly IClientRepository _repository;
-    private readonly IUserRepository _user;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper<ClientEntity, ClientAggregate> _mapper;
 
     public ClientService(IClientRepository repository, IMapper<ClientEntity, ClientAggregate> mapper, IUserRepository user)
     {
         _repository = repository;
         _mapper = mapper;
-        _user = user;
+        _userRepository = user;
     }
 
-    public Task<StandardReponse> Insert(ClientInsertDTO Dto)
+    public async Task<StandardReponse> Insert(ClientInsertDTO Dto)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.FindById(Dto.CreatedBy);
+
+        if (user == null)
+        {
+            return new StandardReponse
+            {
+                Message = "No user found",
+                StatusCode = 404
+            };
+        }
+
+        var aggregate = new ClientAggregate(Dto.Name, Dto.Email, Dto.Phone, user);
+
+        var result = await _repository.Insert(aggregate);
+
+        if (result == false)
+        {
+            return new StandardReponse
+            {
+                Message = "We cant create this Client",
+                StatusCode = 500
+            };
+        }
+
+        return new StandardReponse
+        {
+            Message = "OK",
+            StatusCode = 201
+        };
     }
 }
