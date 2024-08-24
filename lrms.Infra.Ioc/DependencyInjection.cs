@@ -24,6 +24,7 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IMapper<UserEntity, UserAggregate>, UserMapper>();
+        services.AddScoped<IMapper<ClientEntity, ClientAggregate>>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserService, UserService>();
 
