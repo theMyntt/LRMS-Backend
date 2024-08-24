@@ -23,9 +23,15 @@ public static class DependencyInjection
                              options => options.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName));
         });
 
+        // Mappers
         services.AddScoped<IMapper<UserEntity, UserAggregate>, UserMapper>();
         services.AddScoped<IMapper<ClientEntity, ClientAggregate>>();
+
+        // Repositories
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IClientRepository, ClientRepository>();
+
+        // Services
         services.AddScoped<IUserService, UserService>();
 
         return services;
