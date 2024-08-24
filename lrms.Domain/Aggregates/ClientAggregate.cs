@@ -55,7 +55,7 @@ public class ClientAggregate
                            string Phone,
                            UserAggregate CreatedBy,
                            DateTime CreatedAt,
-                           DateTime UpdatedAt)
+                           DateTime? UpdatedAt)
     {
         this.Id = Id;
         this.Name = Name;
