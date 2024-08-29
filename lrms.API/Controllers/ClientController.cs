@@ -21,7 +21,7 @@ namespace lrms.API.Controllers
         {
             var result = await _service.Insert(dTO);
 
-            return StatusCode(201, result);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }
